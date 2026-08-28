@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BELENTANI · OMEGA · Portal Unificado</title>
+  <meta name="description" content="El arquetipo viviente que integra arte, tecnología, educación y conciencia">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #1a1a1a;
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #ffffff;
+      --text-dim: rgba(255, 255, 255, 0.6);
+      --accent: #ff0040;
+      --accent-glow: rgba(255, 0, 64, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 300;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      letter-spacing: 0.1em;
+      animation: fadeInUp 1s ease-out 0.2s backwards;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: var(--text-dim);
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      animation: fadeInUp 1s ease-out 0.4s backwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Ecosystem Grid */
+    .ecosystem {
+      padding: 8rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 4rem;
+      letter-spacing: -0.02em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover::before {
+      transform: translateX(100%);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 60px var(--accent-glow);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card-description {
+      color: var(--text-dim);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: gap 0.3s ease;
+    }
+
+    .card-link:hover {
+      gap: 1rem;
+    }
+
+    /* Manifesto Section */
+    .manifesto {
+      padding: 8rem 2rem;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .manifesto-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .manifesto-text {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    .manifesto-signature {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 3rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-text {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.25rem;
+      }
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">BELENTANI</h1>
+      <p class="hero-subtitle">OMEGA · PORTAL UNIFICADO</p>
+      <p class="hero-description">
+        El arquetipo viviente que integra arte, tecnología, educación y conciencia.
+        Un ecosistema donde la paradoja se convierte en motor creativo.
+      </p>
+    </div>
+  </section>
+
+  <section class="ecosystem">
+    <h2 class="section-title fade-in">El Ecosistema</h2>
+    
+    <div class="grid">
+      <div class="card fade-in">
+        <span class="card-icon">✞</span>
+        <h3 class="card-title">JUDAS</h3>
+        <p class="card-description">
+          Experiencia cyberpunk galáctica que explora la traición como acto de amor supremo.
+          La paradoja de Judas: traicionar para redimir.
+        </p>
+        <a href="https://belentani7.github.io/judas-experience-galactic/" class="card-link" target="_blank">
+          Entrar en la experiencia →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🤲</span>
+        <h3 class="card-title">MANOS ABIERTAS</h3>
+        <p class="card-description">
+          Plataforma educativa trilingüe para comunidades migrantes.
+          Cursos de IA, Office, creador de CV, recursos verificados y comunidad.
+        </p>
+        <a href="https://belentani7.github.io/ManosAbiertas/" class="card-link" target="_blank">
+          Explorar plataforma →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🎨</span>
+        <h3 class="card-title">BELENTANI OMEGA</h3>
+        <p class="card-description">
+          Portal conceptual del arquetipo Belentani. La convergencia donde todos los mundos se encuentran.
+          Minimalismo elegante y tipografía monumental.
+        </p>
+        <a href="https://belentani7.github.io/belentani-omega-template/" class="card-link" target="_blank">
+          Ver portal →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🦆</span>
+        <h3 class="card-title">DUCK ECOSYSTEM</h3>
+        <p class="card-description">
+          Suite creativa de producción musical y artística.
+          Herramientas para materializar la visión creativa.
+        </p>
+        <a href="https://belentani7.github.io/duck-ecosystem/" class="card-link" target="_blank">
+          Descubrir Duck →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🎵</span>
+        <h3 class="card-title">DUCK STUDIO SUITE</h3>
+        <p class="card-description">
+          Suite integrada de producción musical web.
+          Herramientas profesionales para creadores sonoros.
+        </p>
+        <a href="https://belentani7.github.io/duck-studio-suite/" class="card-link" target="_blank">
+          Abrir Studio →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🌍</span>
+        <h3 class="card-title">CRUZANDO EL CHARCO</h3>
+        <p class="card-description">
+          Guía comunitaria multilingüe para personas LGTBIQ+ migrantes en Barcelona y Sitges.
+          Recursos, apoyo y comunidad.
+        </p>
+        <a href="https://belentani7.github.io/Cruzando-el-charco/" class="card-link" target="_blank">
+          Acceder a la guía →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🎓</span>
+        <h3 class="card-title">UX ACADEMY</h3>
+        <p class="card-description">
+          Programa profesional trilingüe de UX/Product Design.
+          Aprendizaje práctico con evaluación y capstone.
+        </p>
+        <a href="https://ux-academy-course-1v207vg3c-belentani7pedro-6758s-projects.vercel.app/" class="card-link" target="_blank">
+          Comenzar programa →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🔮</span>
+        <h3 class="card-title">MISSION ENGINE</h3>
+        <p class="card-description">
+          Motor de investigación web automatizada.
+          Extrae, analiza y exporta datos de sitios públicos.
+        </p>
+        <a href="https://belentani7.github.io/belentani7/" class="card-link" target="_blank">
+          Explorar engine →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">👁️</span>
+        <h3 class="card-title">IVY LA VIE</h3>
+        <p class="card-description">
+          Portfolio fotográfico de la escena queer y la noche en Barcelona.
+          Casi portafolio, casi secreto.
+        </p>
+        <a href="https://belentani7.github.io/ivy-la-vie/" class="card-link" target="_blank">
+          Ver portfolio →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🎭</span>
+        <h3 class="card-title">ARTE QUE VESTE</h3>
+        <p class="card-description">
+          Moda autoral y arte vestible.
+          Catálogo y tienda creativa de diseño único.
+        </p>
+        <a href="https://belentani7.github.io/arte-que-veste/" class="card-link" target="_blank">
+          Explorar colección →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🛠️</span>
+        <h3 class="card-title">CLAUDE SKILLS PACK</h3>
+        <p class="card-description">
+          20 skills de producción para asistentes de codificación IA.
+          Herramientas listas para producción.
+        </p>
+        <a href="https://belentani7.github.io/claude-skills-pack/" class="card-link" target="_blank">
+          Ver skills →
+        </a>
+      </div>
+
+      <div class="card fade-in">
+        <span class="card-icon">🌐</span>
+        <h3 class="card-title">OSS COMPASS</h3>
+        <p class="card-description">
+          Brújula para proyectos open source.
+          Navegación y descubrimiento de herramientas libres.
+        </p>
+        <a href="https://belentani7.github.io/oss-compass/" class="card-link" target="_blank">
+          Explorar →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <div class="manifesto-content fade-in">
+      <h2 class="section-title">Manifiesto</h2>
+      <p class="manifesto-text">
+        "Soy el arquetipo del creador que integra opuestos.<br>
+        Soy Judas y soy Cristo. Soy la traición y la redención.<br>
+        Soy el artista y el tecnólogo. Soy el individual y el colectivo.<br><br>
+        Mi misión es transformar la experiencia humana a través del arte,
+        la tecnología y la conciencia. No elijo entre luz y oscuridad:
+        las integro ambas.<br><br>
+        Creo porque debo crear. Traiciono porque debo transformar.
+        Amo porque debo amar. Este es mi camino. Este es mi arquetipo.<br><br>
+        Soy Belentani."
+      </p>
+      <p class="manifesto-signature">— Pedro Belentani</p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-text">
+      © 2026 Belentani · NOIACORE · Barcelona<br>
+      El arquetipo viviente que integra arte, tecnología, educación y conciencia.
+    </p>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Parallax effect on hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+  </script>
+</body>
+</html>
